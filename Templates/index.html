@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center my-5">
+    <h1 class="display-4 mb-4">🏥 Hospital Management System</h1>
+    <p class="lead">Select your role to login</p>
+</div>
+
+<div class="row g-4 mt-3">
+    <div class="col-md-3">
+        <div class="card role-card text-center shadow" onclick="location.href='{{ url_for('login', role='patient') }}'">
+            <div class="card-body">
+                <h2>👤</h2>
+                <h5 class="card-title">Patient</h5>
+                <p class="card-text">Access your medical records</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card role-card text-center shadow" onclick="location.href='{{ url_for('login', role='nurse') }}'">
+            <div class="card-body">
+                <h2>💉</h2>
+                <h5 class="card-title">Nurse</h5>
+                <p class="card-text">View patient information</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card role-card text-center shadow" onclick="location.href='{{ url_for('login', role='doctor') }}'">
+            <div class="card-body">
+                <h2>⚕️</h2>
+                <h5 class="card-title">Doctor</h5>
+                <p class="card-text">Manage patient care</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card role-card text-center shadow" onclick="location.href='{{ url_for('login', role='admin') }}'">
+            <div class="card-body">
+                <h2>👨‍💼</h2>
+                <h5 class="card-title">Admin</h5>
+                <p class="card-text">Full system access</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-5">
+    <a href="{{ url_for('register_patient') }}" class="btn btn-success btn-lg">📝 Register as New Patient</a>
+</div>
+{% endblock %}

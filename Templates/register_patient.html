@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">Patient Registration</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="username" class="form-label">Username *</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="password" class="form-label">Password *</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="full_name" class="form-label">Full Name *</label>
+                        <input type="text" class="form-control" id="full_name" name="full_name" required>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="age" class="form-label">Age</label>
+                            <input type="number" class="form-control" id="age" name="age">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="gender" class="form-label">Gender</label>
+                            <select class="form-select" id="gender" name="gender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="tel" class="form-control" id="phone" name="phone">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <textarea class="form-control" id="address" name="address" rows="2"></textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="disease_taxonomy" class="form-label">Disease Taxonomy / Diagnosis *</label>
+                        <input type="text" class="form-control" id="disease_taxonomy" name="disease_taxonomy" 
+                               placeholder="e.g., Cardiovascular Disease, Diabetes Type 2" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="account_balance" class="form-label">Account Balance ($) *</label>
+                        <input type="number" step="0.01" class="form-control" id="account_balance" 
+                               name="account_balance" value="0" required>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="family_patient_id" class="form-label">Related Family Member (if any)</label>
+                            <select class="form-select" id="family_patient_id" name="family_patient_id">
+                                <option value="">None</option>
+                                {% for p in patients %}
+                                <option value="{{ p.id }}">{{ p.full_name }} (ID: {{ p.id }})</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="family_relation" class="form-label">Relationship</label>
+                            <input type="text" class="form-control" id="family_relation" name="family_relation" 
+                                   placeholder="e.g., Spouse, Parent, Child">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success w-100">Register</button>
+                </form>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <a href="{{ url_for('index') }}" class="btn btn-link">← Back to Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

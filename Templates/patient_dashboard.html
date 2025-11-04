@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mt-4">
+    <h2>Welcome, {{ patient.full_name }}! 👤</h2>
+    <div class="card mt-4 shadow">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Your Medical Information</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Patient ID:</strong> {{ patient.id }}</p>
+                    <p><strong>Name:</strong> {{ patient.full_name }}</p>
+                    <p><strong>Age:</strong> {{ patient.age }}</p>
+                    <p><strong>Gender:</strong> {{ patient.gender }}</p>
+                    <p><strong>Phone:</strong> {{ patient.phone }}</p>
+                    <p><strong>Email:</strong> {{ patient.email }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Address:</strong> {{ patient.address }}</p>
+                    <p><strong>Disease Taxonomy:</strong> <span class="badge bg-danger">{{ patient.disease_taxonomy }}</span></p>
+                    <p><strong>Account Balance:</strong> ${{ "%.2f"|format(patient.account_balance) }}</p>
+                    <p><strong>Admission Date:</strong> {{ patient.admission_date.strftime('%Y-%m-%d %H:%M') }}</p>
+                    {% if patient.family_member %}
+                    <p><strong>Related Family Member:</strong> {{ patient.family_member.full_name }} ({{ patient.family_relation }})</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
